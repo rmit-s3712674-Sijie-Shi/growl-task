@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import './growl.css'
 
@@ -9,10 +9,15 @@ export const Growl = ({ active, message, onDismissed }) => (
   </div>
 )
 
-export function useGrowl() {
+export function useGrowl(time = 3000) {
     // state of the growl
     const [growlActive, setGrowlActive] = React.useState(false)
-
+    useEffect(() => {
+      if (growlActive) {
+        const setDismiss = setTimeout(() => setGrowlActive(false), time);
+        return () => clearTimeout(setDismiss);
+      }
+    }, [growlActive, time]);
     return [
         // the first arg is the state
         growlActive, 

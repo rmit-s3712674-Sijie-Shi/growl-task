@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from './logo.svg'
@@ -7,7 +7,6 @@ import { useGrowl, Growl } from './growl'
 
 function App() {
 	const [active, setActive] = useGrowl()
-
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -19,11 +18,11 @@ function App() {
 					Edit <code>src/App.js</code> and save to reload.
         		</p>
 
-				<a className="App-link" href="#" onClick={() => void setActive(true)}>
+				<a className="App-link" href="#" onClick={() =>void setActive(true)}>
 					Clik here to activate the growl
         		</a>
 			</header>
-			<Growl onDismissed={() => setActive(false)} active={active} message="Hello World!" />
+			<Growl onDismissed={() => setActive(false)} active={active} message="Hello World!" time={200} />
 		</div>
 	)
 }
